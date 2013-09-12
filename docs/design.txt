@@ -1,0 +1,34 @@
+Use HDF5 as data store.
+
+## Collectors
+
+A Collector is a class which defines how to capture a data point based on
+various parameters.
+
+For example, let's say we define a class `grasshook.collectors.HTMLSelector`
+which loads a HTML page and takes a certain element's text content as its
+value. The class should implement a `collect()` method which gathers the data
+and commits it to the database.
+
+## Configuring Collectors
+
+A configuration file should contain collector aliases followed by a dictionary
+of parameter values to be passed to the collector. For example:
+
+html-selector:
+  url : http://twitter.com
+  username : dexyit
+  selector : a[data-nav=followers] strong
+
+Here url, username and selector are parameters which are passed to the `collect()` method.
+
+## Collect Method
+
+The `collect()` method should create and populate a new row in the data table.
+
+## Controller
+
+A controller should check whether a data table exists in the specified
+location, initialize it if not, or open it in append mode if so, then load and
+parse the config file and process each collector.
+
