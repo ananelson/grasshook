@@ -17,7 +17,7 @@ def open_h5(data_file):
         # create and setup new database
         h5file = tables.open_file(data_file, mode='w')
         group = h5file.create_group("/", "gh")
-        table = h5file.create_table(group, "ghdata", grasshook.data.Data, "Colleted data.")
+        table = h5file.create_table(group, "ghdata", grasshook.data.Data, "Collected data.")
         return h5file
 
 def run():

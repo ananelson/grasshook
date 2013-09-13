@@ -1,4 +1,5 @@
 from tables import *
+import time
 
 class PluginMeta(type):
     def __init__(cls, name, bases, attrs):
@@ -27,6 +28,7 @@ class Collector(object):
     def collect(self, row):
         row['name'] = self.name()
         row['value'] = self.value()
+        row['collected_at'] = time.time()
         row.append()
 
     def value(self):
